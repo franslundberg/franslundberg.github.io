@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Frans Lundberg's website</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta name="keywords" content="Frans Lundberg, BergDB, Java, IT consultant"/>
+</head>
+
+<body>
+<div class="content">
+
+<p>Published: 2013-08-21</p>
+
+<h1>A day of Clojure</h1>
+
+<p>With support from my employer (a great one, Citerus AB), I spent my 
+workday today emerged into the world of Clojure code. I am a total newbie 
+to the Clojure language and syntax, but I have read about the concepts 
+and about how it was created... By one smart guy, on his own to start with. 
+No design by committee. Rich Hickey created Clojure and released it 
+open source. Thank you!</p>
+
+<h2>Tools</h2>
+
+<p>The official download from clojure.org contains the clojure jar
+file which can be used to run a Clojure REPL (read-eval-print-loop).
+Like this:</p>
+
+<code>java -cp /a/pr/clojure-1.5.1/clojure-1.5.1.jar clojure.main</code>
+
+<p>Works OK on my computer, but a major annoyance was that arrow-up 
+key did not bring back previous commands. Otherwise it worked fine. 
+My ordinary text editor, jEdit, does support Clojure syntax which is helpful.
+</p>
+
+<p>For the very first taste of Clojure, I recommend the online 
+REPL at tryclj.com, Type "next" to start on a 5-minute code-based tutorial.</p>
+
+<p>I also used the Eclipse plugin: http://code.google.com/p/counterclockwise/ 
+- seems nice. Code completion, useful syntax highlighing and help with 
+parentheses matching.</p>
+
+<h2>First impression</h2>
+
+<p>I actually don't mind the syntax! That is <i>not</i> something I would have said 
+yesterday, or something I expected I would say today. But it actually makes 
+sense. So incredibly simple, and yet so powerful. For mathematical expressions 
+the prefix notation used by Clojure gets a bit hairy though. 
+Who wants to see:</p>
+
+<pre>    (def c (Math/sqrt (+ (* a a) (* b b))))     ; Clojure
+</pre>
+
+<p>Most would prefer:</p>
+
+<pre>    c = Math.sqrt(a*a + b*b);                   ; Java
+</pre>
+
+<p>which is more inline with standard mathematical notation.
+But, often the syntax is not bad at all, actually. It is so very simple;
+basically just a list of lists. This simplicity also allows for easy, 
+pre-runtime modification of the code using macros. Clojure like all Lisp
+languages have support for code-as-data.</p>
+
+<p>Of course, Clojure shines compare to Java, when it comes to support
+for functional type of programming. One simple example: code to time the
+execution of a function call. In Clojure, it can be done like this:</p>
+
+<pre>
+    (defn time-it [f]
+      (def t (System/nanoTime))
+      (f)
+      (* 1e-9 (- (System/nanoTime) t))
+    )
+    
+    (defn my-main []
+      (println (time-it #(Thread/sleep 1000)))
+</pre>
+
+<p>With Java, somewhat equivalent code looks like this:</p>
+
+<pre>
+  public class A {
+    public static double timeIt(Runnable r) {
+      long t = System.nanoTime();
+      r.run();
+      return 1e-9 * (System.nanoTime() - t);
+    }
+        
+    public static void main(String[] args) {
+      double time = timeIt(new Runnable() {
+        public void run() {
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        }
+      });
+      System.out.println(time);
+    }
+  }
+</pre>
+
+<p>Bear in mind that the <code>time-it</code> function works for any 
+Clojure function while Java's <code>timeIf</code> method only works for
+a Runnable.</p>
+
+<h2>Concurrency</h2>
+
+<p>Clojure has fantastic features when it comes to concurrency control.
+Things that are really hard to handle in Java, but are solved in an 
+elegant way in Clojure. Clojure supports state changes using 
+software transactional memory 
+(<a href="http://en.wikipedia.org/wiki/Software_transactional_memory">STM</a>) 
+methods and persistent data structures.
+The STM approach is essential; we really need support for it in Java too.
+Concurrency without it is just really too complex to handle; we have enough 
+bugs to deal with in single-threaded applications.
+See <a href="http://multiverse.codehaus.org/60second.html">Multiverse</a>.</p>
+
+<p>The approach of Clojure with STM and persistant data structures 
+is similar conceptually to my approach with the database
+<a href="http://bergdb.com/">BergDB</a>. It also uses STM and persistent
+data structures for high-performance concurrency.</p>
+
+
+<h2>Conclusions</h2>
+
+<p>
+<ul>
+<li>The prefix notation is not as bad as it may seem at first.</li>
+<li>I like Clojure and would like to learn more.</li>
+<li>I would not hesitate to use it together with Java in a commercial project.
+  The integration between Java and Clojure seems simple, performant and stable.</li>
+<li>If one is used to Java and need better support for functional programming
+  and that is all that is needed, I would probably go with Scala.</li>
+<li>If code-as-data is needed, or excellent handling of concurrency, Clojure is
+  probably a good option.</li>
+<li>I wonder about performance, would be interesting to test. If the performance
+  is not good enough, the great support for concurrency has less significance.
+  A single-threaded java code could possibly beat the same stuff running on 
+  8 cores in Clojure - I don't know.</li>
+<li>I wonder when someone will write a similar language (STM, persistent data structures, 
+  functional, code-as-data) but a typed language and with infix notation (Java/C-like).
+  I am afraid the Clojure syntax might scare many programmers away from 
+  a very interesting and powerful programming language.</li>
+</ul>
+</p>
+
+
+</div></body></html>
+

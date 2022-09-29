@@ -1,0 +1,123 @@
+/* style.css - style for BergDB. Frans Lundberg, July 2013. */
+
+
+/* ---- Fonts ---- */
+
+@font-face {
+    font-family: "Courier 10 Pitch";
+    src: local("Courier 10 Pitch Bold"), url("courier-10-pitch-bold.woff");
+    font-weight: bold;
+}
+
+/* ---- Basic ---- */
+
+body {
+  font-size: 100%;
+  font-family: Arial, sans-serif;
+  color: #000;
+  background: #fff;
+  line-height: 140%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.content {
+  width: 80%;
+  max-width: 48em;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+h1 {
+  color: #a6f;
+  font-size: 2.0em;
+  font-family: "Courier 10 Pitch", "Courier New", monospace;
+  font-weight: bold;
+  margin-top: 2em;
+  line-height: 1em;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-family: "Courier 10 Pitch", "Courier New", monospace;
+  font-weight: bold;
+  color: #333;
+  margin-top: 2em;
+}
+
+p {
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  background: #a6f;
+}
+
+.source {
+  font-family: "Liberation Mono", "Lucida Console", "Lucida Sans Typewriter", monospace;
+  font-size: 0.80em;
+  line-height: 120%;
+  color: #000;
+  white-space: pre;
+  margin: 2em 0em 2em 0em;
+  border: 1px solid #ddd;
+  padding: 0.8em;
+  background: #eee;
+}
+
+.source:hover {
+  border-color: #bbb;
+}
+
+/* ---- Extras: menu, left bar ---- */
+
+/* Test - big purple text */
+.colored {
+  font-size: 2em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #a6f;
+}
+
+#left {
+  background: #a6f;
+  position: fixed;
+  left: 0;  top: 0;  bottom: 0;  width: 1.2em;
+  z-index: -10;
+}
+
+.menuPos {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  color: white;
+  background: #555;
+  position: float;
+  z-index: 99;
+  top: 0px;
+  margin: 0px;
+  padding: 6px;
+  padding-left: 10%;
+}
+
+.menuPos a {
+  color: white;
+  text-decoration: none;
+}
+
+.menuPos a:hover {
+  color: #dcc0ff;
+  background: inherit;
+}
+
+.menuPos .selected {
+  color: #e5d1ff;
+}
+
