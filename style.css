@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-  color: #a6f;
+  color: #000;
   font-size: 2.0em;
   font-family: "Courier 10 Pitch", "Courier New", monospace;
   font-weight: bold;
@@ -41,7 +41,7 @@ h2 {
   font-size: 1.4em;
   font-family: "Courier 10 Pitch", "Courier New", monospace;
   font-weight: bold;
-  color: #333;
+  color: #000;
   margin-top: 2em;
 }
 
